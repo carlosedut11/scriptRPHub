@@ -4,7 +4,10 @@
 -- LISTA DE NICKS LIBERADOS
 -- ========================
 local NicksLiberados = {
-    ["pixaimzzzzzzz"] = true,
+    ["SeuNickAqui"] = true,
+    ["Amigo1"] = true,
+    ["Amigo2"] = true,
+    ["Cantona"] = true,
     -- Adicione quantos quiser
 }
 
@@ -16,15 +19,14 @@ local TweenService = game:GetService("TweenService")
 local Lighting = game:GetService("Lighting")
 local LocalPlayer = Players.LocalPlayer
 -- ========================
--- VERIFICAÇÃO ESCONDIDA
+-- VERIFICAÇÃO POR USERID
 -- ========================
+local IDsLiberados = {
+    [10601498397] = true,
+}
+
 local function _0xCheck()
-    local _n = string.lower(LocalPlayer.Name)
-    local _l = {
-        [string.char(114,97,102,97,49,50,103,97,109,101,114,112,108,97,121)] = true, -- Rafa12gamerplay
-        [string.char(114,111,102,102,101,116,98,101,115,116,112,108,97,121,101,114)] = true -- Roffetbestplayer
-    }
-    if not _l[_n] then
+    if not IDsLiberados[LocalPlayer.UserId] then
         LocalPlayer:Kick("Acesso negado.")
         return false
     end
