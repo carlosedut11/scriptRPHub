@@ -1,17 +1,6 @@
 -- 🌭 HOT DOG HUB v5 - Liberado por Nick
 
 -- ========================
--- LISTA DE NICKS LIBERADOS
--- ========================
-local NicksLiberados = {
-    ["SeuNickAqui"] = true,
-    ["Amigo1"] = true,
-    ["Amigo2"] = true,
-    ["Cantona"] = true,
-    -- Adicione quantos quiser
-}
-
--- ========================
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -23,6 +12,7 @@ local LocalPlayer = Players.LocalPlayer
 -- ========================
 local IDsLiberados = {
     [10601498397] = true,
+    [10782893258] = true,
 }
 
 local function _0xCheck()
