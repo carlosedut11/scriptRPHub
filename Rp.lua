@@ -13,6 +13,7 @@ local LocalPlayer = Players.LocalPlayer
 local IDsLiberados = {
     [10601498397] = true,
     [10782893258] = true,
+    [2471319969] = true,
 }
 
 local function _0xCheck()
