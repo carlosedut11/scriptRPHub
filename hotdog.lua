@@ -1,6 +1,5 @@
 -- 🌭 HOT DOG HUB v5 - Liberado por Nick
 
--- ========================
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -38,6 +37,8 @@ local Cache = {
     Character = nil, RootPart = nil, Humanoid = nil, Ball = nil,
     LastBallCheck = 0, GUI = nil, FrozenBall = nil, FrozenPos = nil
 }
+
+local GuiHidden = false -- controla o Alt+G
 
 local function UpdateCharacterCache()
     Cache.Character = LocalPlayer.Character
@@ -233,9 +234,18 @@ local function CreateGUI()
     title.TextSize = 15
     Instance.new("UICorner", title).CornerRadius = UDim.new(0, 12)
 
+    local hint = Instance.new("TextLabel", main)
+    hint.Size = UDim2.new(1, 0, 0, 16)
+    hint.Position = UDim2.new(0, 0, 0, 46)
+    hint.BackgroundTransparency = 1
+    hint.Text = "ALT+G esconde a interface (script continua rodando)"
+    hint.TextColor3 = Color3.fromRGB(120, 120, 140)
+    hint.Font = Enum.Font.Gotham
+    hint.TextSize = 9
+
     local container = Instance.new("ScrollingFrame", main)
-    container.Size = UDim2.new(1, -16, 0, 380)
-    container.Position = UDim2.new(0, 8, 0, 55)
+    container.Size = UDim2.new(1, -16, 0, 360)
+    container.Position = UDim2.new(0, 8, 0, 68)
     container.BackgroundTransparency = 1
     container.ScrollBarThickness = 4
     container.AutomaticCanvasSize = Enum.AutomaticSize.Y
@@ -299,7 +309,24 @@ local function CreateGUI()
     toggle.MouseButton1Click:Connect(function()
         main.Visible = not main.Visible
     end)
+
+    Cache.GUI = sg
 end
+
+-- ========================
+-- ALT+G: esconde a interface, mas o script continua rodando normal
+-- ========================
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+    if gameProcessed then return end
+    local altPressed = UserInputService:IsKeyDown(Enum.KeyCode.LeftAlt)
+        or UserInputService:IsKeyDown(Enum.KeyCode.RightAlt)
+    if altPressed and input.KeyCode == Enum.KeyCode.G then
+        GuiHidden = not GuiHidden
+        if Cache.GUI then
+            Cache.GUI.Enabled = not GuiHidden
+        end
+    end
+end)
 
 -- Loop
 local lastUpdate = 0
@@ -326,4 +353,3 @@ RunService.Heartbeat:Connect(function()
 end)
 
 CreateGUI()
-print("✅ Hot Dog Hub liberado por Nick!")
