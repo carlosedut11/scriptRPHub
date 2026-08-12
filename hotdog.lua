@@ -13,6 +13,7 @@ local IDsLiberados = {
     [10601498397] = true,
     [10782893258] = true,
     [2471319969] = true,
+    [4927298879] = true,
 }
 
 local function _0xCheck()
